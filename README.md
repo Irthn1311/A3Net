@@ -19,3 +19,11 @@ Run `bash run_iu_xray.sh` to train a model on the IU X-Ray data.
 ## Run on MIMIC-CXR
 
 Run `bash run_mimic_cxr.sh` to train a model on the MIMIC-CXR data.
+
+## Test on IU X-Ray
+
+Run `bash test_iu_xray.sh` to train a model on the IU X-Ray data.
+
+## Test on MIMIC-CXR
+
+Run `bash test_mimic_cxr.sh` to train a model on the MIMIC-CXR data.
