@@ -3,7 +3,7 @@
 This is the implementation of A3Net.
 
 ## Download A3Net
-You can download the models we trained for each dataset from [here](https://github.com/Vinh-AI/A3Net/main/data/a3net.md).
+You can download the models we trained for each dataset from [here](https://github.com/Vinh-AI/A3Net/blob/main/data/a3net.md).
 
 ## Datasets
 We use two datasets (IU X-Ray and MIMIC-CXR) in our paper.
