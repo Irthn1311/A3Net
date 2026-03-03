@@ -16,5 +16,5 @@ python main.py \
     --cmm_dim 512 \
     --seed 7580 \
     --beam_size 3 \
-    --save_dir results/iu_xray/ \
+    --save_dir results/iu_xray_seed_02032026/ \
     --log_period 50

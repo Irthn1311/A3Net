@@ -1,6 +1,8 @@
 import torch
 import argparse
 import numpy as np
+import os, json, platform, datetime, subprocess
+import torch
 from models.a3net import BaseModel
 from modules.loss import compute_loss
 from modules.trainer_cmn import Trainer
@@ -8,7 +10,28 @@ from modules.tokenizers import Tokenizer
 from modules.metrics import compute_scores
 from modules.dataloaders import R2DataLoader
 from modules.optimizers import build_optimizer, build_lr_scheduler
+def dump_json(path, obj):
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, indent=2, ensure_ascii=False)
 
+def get_git_commit():
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"]).decode().strip()
+    except Exception:
+        return None
+
+def get_env_info():
+    return {
+        "time": datetime.datetime.now().isoformat(),
+        "python": platform.python_version(),
+        "platform": platform.platform(),
+        "pytorch": torch.__version__,
+        "cuda_available": torch.cuda.is_available(),
+        "cuda_version": torch.version.cuda,
+        "cudnn_version": torch.backends.cudnn.version(),
+        "gpu_name": torch.cuda.get_device_name(0) if torch.cuda.is_available() else None,
+        "git_commit": get_git_commit(),
+    }
 def parse_agrs():
     parser = argparse.ArgumentParser()
 
@@ -91,12 +114,15 @@ def parse_agrs():
     parser.add_argument('--resume', type=str, help='whether to resume the training from existing checkpoints.')
 
     args = parser.parse_args()
+
     return args
 
 def main():
     # parse arguments
     args = parse_agrs()
-
+    os.makedirs(args.save_dir, exist_ok=True)
+    dump_json(os.path.join(args.save_dir, "run_config.json"), vars(args))
+    dump_json(os.path.join(args.save_dir, "env.json"), get_env_info())
     # fix random seeds
     torch.manual_seed(args.seed)
     torch.backends.cudnn.deterministic = True
@@ -108,7 +134,7 @@ def main():
     
     # create data loader
     train_dataloader = R2DataLoader(args, tokenizer, split='train', shuffle=True)
-    val_dataloader = R2DataLoader(args, tokenizer, split='validate', shuffle=False)
+    val_dataloader = R2DataLoader(args, tokenizer, split='val', shuffle=False)
     test_dataloader = R2DataLoader(args, tokenizer, split='test', shuffle=False)
 
     # build model architecture
