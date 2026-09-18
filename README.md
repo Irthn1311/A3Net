@@ -1,29 +1,32 @@
-# A3Net
+# A3Net — Reference Fork
 
-This is the implementation of A3Net.
+> **Attribution:** this repository is a fork of [Vinh-AI/A3Net](https://github.com/Vinh-AI/A3Net), the upstream A3Net implementation. The original model, paper implementation, and upstream code are **not my work**. I keep this fork as a research/reference workspace for reproduction and experimentation.
 
-## Download A3Net
-You can download the models we trained for each dataset from [here](https://github.com/Vinh-AI/A3Net/blob/main/data/a3net.md).
+For the canonical implementation, documentation, model files, and citation information, use the upstream repository.
 
-## Datasets
-We use two datasets (IU X-Ray and MIMIC-CXR) in our paper.
+## Upstream project
 
-For `IU X-Ray`, you can download the dataset from [here](https://drive.google.com/file/d/1c0BXEuDy8Cmm2jfN0YYGkQxFZd2ZIoLg/view?usp=sharing) and then put the files in `data/iu_xray`.
+A3Net is evaluated on the IU X-Ray and MIMIC-CXR datasets.
 
-For `MIMIC-CXR`, you can download the dataset from [here](https://drive.google.com/file/d/1DS6NYirOXQf8qYieSVMvqNwuOlgAbM_E/view?usp=sharing) and then put the files in `data/mimic_cxr`.
+Model/download instructions from upstream:
+- [A3Net model information](https://github.com/Vinh-AI/A3Net/blob/main/data/a3net.md)
 
-## Run on IU X-Ray
+## Basic upstream commands
 
-Run `bash run_iu_xray.sh` to train a model on the IU X-Ray data.
+### IU X-Ray
 
-## Run on MIMIC-CXR
+```bash
+bash run_iu_xray.sh
+bash test_iu_xray.sh
+```
 
-Run `bash run_mimic_cxr.sh` to train a model on the MIMIC-CXR data.
+### MIMIC-CXR
 
-## Test on IU X-Ray
+```bash
+bash run_mimic_cxr.sh
+bash test_mimic_cxr.sh
+```
 
-Run `bash test_iu_xray.sh` to train a model on the IU X-Ray data.
+## Portfolio note
 
-## Test on MIMIC-CXR
-
-Run `bash test_mimic_cxr.sh` to train a model on the MIMIC-CXR data.
+This fork is intentionally **not** listed as an original portfolio project. Any personal modifications should be evaluated from this fork's commit history / branches rather than attributed to the upstream implementation.
